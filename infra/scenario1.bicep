@@ -1,26 +1,37 @@
 targetScope = 'subscription'
 
+param project string = 'heywprofiles'
 param location string = deployment().location
 param tags object = {}
 
 @description('Optional. Workload profiles configured for the Managed Environment.')
 param workloadProfiles array = [ 
+{
+    name: 'Consumption'
+    workloadProfileType: 'Consumption'
+  }  
   {
-    name: 'wp-process'
+    name: 'wp-01'
     workloadProfileType: 'D4'
-    MinimumCount: 1
-    MaximumCount: 3
-  }
+    MinimumCount: 7
+    MaximumCount: 7
+  } 
   {
-    name: 'wp-egress'
+    name: 'wp-02'
     workloadProfileType: 'D4'
-    MinimumCount: 1
-    MaximumCount: 3
-  }    
+    MinimumCount: 7
+    MaximumCount: 7
+  } 
+  {
+    name: 'wp-03'
+    workloadProfileType: 'D4'
+    MinimumCount: 7
+    MaximumCount: 7
+  }     
 ]
 
 // Variables
-var projectName = 'hellowprofiles'
+var projectName = project
 var deploymentName = deployment().name
 var resourceGroupName = 'rg-${projectName}'
 var virtualNetworkName = 'vnet-${projectName}'
@@ -78,7 +89,7 @@ module modAcaEnvironment  'CARML/app/managed-environment/main.bicep' = {
     tags: tags
     logAnalyticsWorkspaceResourceId: modLogAnalytics.outputs.resourceId
     enableDefaultTelemetry: false
-    internal: true
+    internal: false
     infrastructureResourceGroup : infrastructureResourceGroupName
     infrastructureSubnetId: modNetworking.outputs.firstSubnetId
     workloadProfiles: workloadProfiles

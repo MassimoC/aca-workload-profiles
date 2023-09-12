@@ -14,13 +14,13 @@ param tags object = {}
 // ********** ACA Subnets ***********
 
 param firstSubnetName string = 'FirstSubnet'
-param firstSubnetAddressPrefix string = '10.0.0.0/21'
+param firstSubnetAddressPrefix string = '10.0.0.0/27'
 
 param secondSubnetName string = 'SecondSubnet'
-param secondSubnetAddressPrefix string = '10.1.0.0/22'
+param secondSubnetAddressPrefix string = '10.1.0.0/27'
 
 param thirdSubnetName string = 'ThirdSubnet'
-param thirdSubnetAddressPrefix string = '10.2.0.0/24'
+param thirdSubnetAddressPrefix string = '10.2.0.0/27'
 
 param fourthSubnetName string = 'FourthSubnet'
 param fourthSubnetAddressPrefix string = '10.3.0.0/27'
